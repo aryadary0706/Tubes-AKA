@@ -1,0 +1,106 @@
+#ifndef NAMA_PEMAIN_H_INCLUDED
+#define NAMA_PEMAIN_H_INCLUDED
+
+#include <iostream>
+using namespace std;
+
+struct players{
+    string nama, posisi;
+    int overall, price;
+};
+
+//case pertama: N = 50
+//case kedua: N = 100
+//case ketiga: N = 250
+//case keempat: N = 500
+//case kelima: N = 1000/850
+int N = 100;
+players Dataplayers[N];
+Dataplayers[0] = {"Erling Braut Håland", "ST", 91, 185000000};
+Dataplayers[1] = {"Kylian Mbappé Lottin", "ST", 91, 181500000};
+Dataplayers[2] = {"Kevin De Bruyne", "CM", 91, 103000000};
+Dataplayers[3] = {"Rodri", "CDM", 90, 129500000};
+Dataplayers[4] = {"Harry Kane", "ST", 90, 1195000000};
+Dataplayers[5] = {"Thibaut Nicolas Marc Courtois", "GK", 90, 63000000};
+Dataplayers[6] = {"Robert Lewandowski", "ST", 90, 58000000};
+Dataplayers[7] = {"Lionel Andrés Messi Cuccitini", "CF", 90, 41000000};
+Dataplayers[8] = {"Rúben dos Santos Gato Alves Dias", "CB", 89, 106500000};
+Dataplayers[9] = {"Vinicius José Paixão de Oliveira Junior", "LW", 89, 158500000};
+Dataplayers[10] = {"Alisson Ramsés Becker", "GK", 89, 68500000};
+Dataplayers[11] = {"Mohamed Salah", "RW", 89, 85500000};
+Dataplayers[12] = {"Virgil van Dijk", "CB", 89, 70500000};
+Dataplayers[13] = {"Marc-André ter Stegen", "GK", 89, 54500000};
+Dataplayers[14] = {"Jude Victor William Bellingham", "CAM", 88, 128500000};
+Dataplayers[15] = {"Federico Santiago Valverde", "CM", 88, 124000000};
+Dataplayers[16] = {"Lautaro Javier Martínez", "ST", 88, 116000000};
+Dataplayers[17] = {"Martin Ødegaard", "CM", 88, 118000000};
+Dataplayers[18] = {"Bernardo Silva", "CM", 88, 91500000};
+Dataplayers[19] = {"Ederson Santana de Moraes", "GK", 88, 70000000};
+Dataplayers[20] = {"Jan Oblak", "GK", 88, 61000000};
+Dataplayers[21] = {"Antoine Griezmann", "ST", 88, 74000000};
+Dataplayers[22] = {"Neymar da Silva Santos Júnior", "LW", 88, 75500000};
+Dataplayers[23] = {"Karim Benzema","ST", 88, 39000000};
+Dataplayers[24] = {"Florian Richard Wirtz", "CAM", 87, 118500000};
+Dataplayers[25] = {"Philip Walter Foden", "RW", 87, 109000000};
+Dataplayers[26] = {"Gregor Kobel", "GK", 87, 81500000};
+Dataplayers[27] = {"Declan Rice", "CDM", 87, 88500000};
+Dataplayers[28] = {"Victor James Osimhen", "ST", 87, 104500000};
+Dataplayers[29] = {"Gianluigi Donnarumma", "GK", 87, 85500000};
+Dataplayers[30] = {"Frenkie de Jong", "CM", 87,93000000};
+Dataplayers[31] = {"Mike Peterson Maignan", "GK",87 ,78000000};
+Dataplayers[32] = {"Joshua Kimmich", "CDM", 87, 70000000};
+Dataplayers[33] = {"Bruno Miguel Borges Fernandes", "CAM", 87, 80000000};
+Dataplayers[34] = {"Marcos Aoás Corrêa", "CB", 87, 66500000};
+Dataplayers[35] = {"Heung Min Son", "LW", 87, 77000000};
+Dataplayers[36] = {"Jamal Musiala", "CAM", 86, 134500000};
+Dataplayers[37] = {"Ronald Araujo", "CB", 86, 93000000};
+Dataplayers[38] = {"Pedro González López", "CM", 86, 105000000};
+Dataplayers[39] = {"Khvicha Kvaratskhelia", "LW", 86, 109000000};
+Dataplayers[40] = {"Bukayo Saka", "RW", 86, 99000000};
+Dataplayers[41] = {"Rafael da Conceição Leão", "LW", 86, 93000000};
+Dataplayers[42] = {"Éder Gabriel Militão", "CB", 86, 80000000};
+Dataplayers[43] = {};
+Dataplayers[44] = {};
+Dataplayers[45] = {};
+Dataplayers[46] = {};
+Dataplayers[47] = {};
+Dataplayers[48] = {};
+Dataplayers[49] = {};
+Dataplayers[50] = {};
+Dataplayers[51] = {};
+Dataplayers[52] = {};
+Dataplayers[53] = {};
+Dataplayers[54] = {};
+Dataplayers[55] = {};
+Dataplayers[56] = {};
+Dataplayers[57] = {};
+Dataplayers[58] = {};
+Dataplayers[59] = {};
+Dataplayers[60] = {};
+Dataplayers[61] = {};
+Dataplayers[62] = {};
+Dataplayers[63] = {};
+Dataplayers[64] = {};
+Dataplayers[65] = {};
+Dataplayers[66] = {};
+Dataplayers[67] = {};
+Dataplayers[68] = {};
+Dataplayers[69] = {};
+Dataplayers[70] = {};
+Dataplayers[71] = {};
+Dataplayers[72] = {};
+Dataplayers[73] = {};
+Dataplayers[74] = {};
+Dataplayers[75] = {};
+Dataplayers[76] = {};
+Dataplayers[77] = {};
+Dataplayers[78] = {};
+Dataplayers[79] = {};
+Dataplayers[80] = {};
+Dataplayers[31] = {};
+Dataplayers[31] = {};
+
+
+
+
+#endif // NAMA_PEMAIN_H_INCLUDED
