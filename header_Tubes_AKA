@@ -16,4 +16,8 @@ struct Players{
 
 void resetPlayers(Players &players, int N);
 void init_players_1(Players &DataPemain5);
+string findPlayerIterative(Players Dataplayer, string position, int Overall, int value, int N);
+bool checkOverallInput(int Overall);
+bool checkPositionInput(string position);
+
 #endif // HEADER_H_INCLUDED
