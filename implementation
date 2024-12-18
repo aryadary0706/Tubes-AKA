@@ -1,371 +1,85 @@
 #include "header.h"
 
-// Array posisi pemain
-const string role[15] = {"GK", "CB", "RB", "RWB", "LB", "LWB", "CDM", "CM", "LM", "RM", "CAM", "RW", "LW", "CF", "ST"};
+int main(){
+    /*
+    int num = 0;
+    Players Database;
+    while (num >= 0 && num <= 5){
+        cout<<"Pilih Database yang mau dipakai:\n";
+        cout<<"Data_Pemain1 (50)\n";
+        cin>>num;
+        if (num == 1) {
+        int N = 50;
+        init_players_1(Database);
 
-//Reset Players
-void resetPlayers(Players &players, int N) {
-    for (int i = 0; i < N; i++) {
-        players.ID[i] = 0; // Reset ID ke 0
-        players.nama[i] = ""; // Reset nama ke string kosong
-        players.role[i] = ""; // Reset role ke string kosong
-        players.Overall[i] = 0; // Reset Overall ke 0
-        players.value[i] = 0; // Reset value ke 0
-    }
-}
+        cout<<"Masukkan Data Pemain (position, Overall, value)"<<endl;
+        string cache_posisi;
+        int cache_Overall, cache_value;
+        cout<<"Masukkan posisi: "
+        cin>>cache_posisi
+        cout<<endl;
+        cout<<"Masukkan overall: "
+        cin>>cache_Overall
+        cout<<endl;
+        cout<<"Masukkan value: "
+        cin>>cache_value
+        cout<<endl;
 
-//Cek validitas Overall
-bool checkOverallInput(int Overall){
-    bool valid_overall;
-    if (Overall >= 79 && Overall <= 91){
-        valid_overall = true;
-    }else{
-        valid_overall = false;
-    }
-    return valid_overall;
-}
+        findPlayerIterative(Database, position, Overall, value, 50)
+        resetPlayers(Database, N);
+        }else if (num == 2){
 
-//Cek Validitas Posisi
-bool checkPositionInput(string position) {
-    for (int i = 0; i < 15; i++) {
-        if (role[i] == position) {
-            return true;
         }
     }
-    return false;
-}
 
-// Cari pemain berdasarkan atribut secara iteratif
-string findPlayerIterative(Players Dataplayer, string position, int Overall, int value, int N) {
-    // Validasi input
-    if (!checkOverallInput(Overall) || !checkPositionInput(position)) {
-        return "None"; // Jika input tidak valid
+
+    init_players_1(Data);
+    string SearchedPlayers;
+    SearchedPlayers = findPlayerIterative(Data, "ST", 91, 180000000, 50);
+
+    // Input pencarian pemain
+    string searchPosition;
+    int searchOverall, searchValue;
+
+    cout << "Masukkan posisi pemain yang dicari (contoh: ST): ";
+    cin >> searchPosition;
+
+    cout << "Masukkan overall pemain yang dicari (79-91): ";
+    cin >> searchOverall;
+
+    cout << "Masukkan nilai transfer pemain yang dicari: ";
+    cin >> searchValue;
+    */
+
+    Players Data;
+    int N = 50;
+
+    // Inisialisasi data pemain
+    init_players_1(Data);
+
+    // Input pencarian
+    string searchPosition;
+    int searchOverall, searchValue;
+
+    cout << "Masukkan posisi pemain yang dicari (contoh: ST): ";
+    cin >> searchPosition;
+
+    cout << "Masukkan overall pemain yang dicari (79-91): ";
+    cin >> searchOverall;
+
+    cout << "Masukkan nilai transfer pemain yang dicari: ";
+    cin >> searchValue;
+
+    // Pencarian pemain
+    string result = findPlayerIterative(Data, searchPosition, searchOverall, searchValue, N);
+
+    // Output hasil pencarian
+    if (result != "None") {
+        cout << "Pemain ditemukan: " << result << endl;
+    } else {
+        cout << "Pemain tidak ditemukan." << endl;
     }
 
-    int price_range = (value*1.2) * 0.2; // Toleransi harga awal (10%)
-    string Nama_Pemain = "None";  // Default jika tidak ditemukan
-    bool pemain_ketemu = false;   // Status ditemukan
-
-    // Loop pencarian dengan peningkatan toleransi
-    while (!pemain_ketemu && price_range <= (value*1.2)) { // Batasi toleransi hingga maksimal `value`
-        for (int i = 0; i < N; i++) {
-            if (Dataplayer.role[i] == position &&
-                Dataplayer.Overall[i] == Overall &&
-                Dataplayer.value[i] >= value - price_range &&
-                Dataplayer.value[i] <= value + price_range) {
-                Nama_Pemain = Dataplayer.nama[i];
-                pemain_ketemu = true; // Pemain ditemukan, keluar dari loop
-                break;
-            }
-        }
-        price_range += value * 0.2; // Tingkatkan toleransi harga sebesar 10% dari nilai awal
-    }
-
-    return Nama_Pemain; // Kembalikan hasil pencarian
+    return 0;
 }
 
-
-// Deklarasi global dan inisialisasi langsung
-void init_players_1(Players &DataPemain5){
-    DataPemain5.ID[0] = 1;
-    DataPemain5.nama[0] = "Erling Braut Haland";
-    DataPemain5.role[0] = role[14];
-    DataPemain5.Overall[0] = 91;
-    DataPemain5.value[0] = 180000000;
-
-    DataPemain5.ID[1] = 2;
-    DataPemain5.nama[1] = "Kylian Mbappe Lottin";
-    DataPemain5.role[1] = role[14];
-    DataPemain5.Overall[1] = 91;
-    DataPemain5.value[1] = 181500000;
-
-    DataPemain5.ID[2] = 3;
-    DataPemain5.nama[2] = "Kevin De Bruyne";
-    DataPemain5.role[2] = role[7];
-    DataPemain5.Overall[2] = 91;
-    DataPemain5.value[2] = 103000000;
-
-    DataPemain5.ID[3] = 4;
-    DataPemain5.nama[3] = "Rodri";
-    DataPemain5.role[3] = role[6];
-    DataPemain5.Overall[3] = 90;
-    DataPemain5.value[3] = 129500000;
-
-    DataPemain5.ID[4] = 5;
-    DataPemain5.nama[4] = "Harry Kane";
-    DataPemain5.role[14] = role[14];
-    DataPemain5.Overall[4] = 90;
-    DataPemain5.value[4] = 1195000000;
-
-    DataPemain5.ID[5] = 6;
-    DataPemain5.nama[5] = "Thibaut Nicolas Marc Courtois";
-    DataPemain5.role[5] = role[0];
-    DataPemain5.Overall[5] = 90;
-    DataPemain5.value[5] = 63000000;
-
-    DataPemain5.ID[6] = 7;
-    DataPemain5.nama[6] = "Robert Lewandowski";
-    DataPemain5.role[6] = role[14];
-    DataPemain5.Overall[6] = 90;
-    DataPemain5.value[6] = 58000000;
-
-    DataPemain5.ID[7] = 8;
-    DataPemain5.nama[7] = "Lionel Andres Messi Cuccitini";
-    DataPemain5.role[7] = role[13];
-    DataPemain5.Overall[7] = 90;
-    DataPemain5.value[7] = 41000000;
-
-    DataPemain5.ID[8] = 9;
-    DataPemain5.nama[8] = "Rúben dos Santos Gato Alves Dias";
-    DataPemain5.role[8] = role[1];
-    DataPemain5.Overall[8] = 89;
-    DataPemain5.value[8] = 106500000;
-
-    DataPemain5.ID[9] = 10;
-    DataPemain5.nama[9] = "Vinicius José Paixão de Oliveira Junior";
-    DataPemain5.role[9] = role[12];
-    DataPemain5.Overall[9] = 89;
-    DataPemain5.value[9] = 158500000;
-
-    DataPemain5.ID[10] = 11;
-    DataPemain5.nama[10] = "Alisson Ramsés Becker";
-    DataPemain5.role[10] = role[0];
-    DataPemain5.Overall[10] = 89;
-    DataPemain5.value[10] = 68500000;
-
-    DataPemain5.ID[11] = 12;
-    DataPemain5.nama[11] = "Mohamed Salah";
-    DataPemain5.role[11] = role[11];
-    DataPemain5.Overall[11] = 89;
-    DataPemain5.value[11] = 85500000;
-
-    DataPemain5.ID[12] = 13;
-    DataPemain5.nama[12] = "Virgil van Dijk";
-    DataPemain5.ID[12] = 13;
-    DataPemain5.nama[12] = "Virgil van Dijk";
-    DataPemain5.role[12] = role[1];
-    DataPemain5.Overall[12] = 89;
-    DataPemain5.value[12] = 70500000;
-
-    DataPemain5.ID[13] = 14;
-    DataPemain5.nama[13] = "Marc-André ter Stegen";
-    DataPemain5.role[13] = role[0];
-    DataPemain5.Overall[13] = 89;
-    DataPemain5.value[13] = 54500000;
-
-    DataPemain5.ID[14] = 15;
-    DataPemain5.nama[14] = "Jude Victor William Bellingham";
-    DataPemain5.role[14] = role[10];
-    DataPemain5.Overall[14] = 88;
-    DataPemain5.value[14] = 128500000;
-
-    DataPemain5.ID[15] = 16;
-    DataPemain5.nama[15] = "Federico Santiago Valverde";
-    DataPemain5.role[15] = role[7];
-    DataPemain5.Overall[15] = 88;
-    DataPemain5.value[15] = 124000000;
-
-    DataPemain5.ID[16] = 17;
-    DataPemain5.nama[16] = "Lautaro Javier Martínez";
-    DataPemain5.role[16] = role[14];
-    DataPemain5.Overall[16] = 88;
-    DataPemain5.value[16] = 116000000;
-
-    DataPemain5.ID[17] = 18;
-    DataPemain5.nama[17] = "Martin Ødegaard";
-    DataPemain5.role[17] = role[7];
-    DataPemain5.Overall[17] = 88;
-    DataPemain5.value[17] = 118000000;
-
-    DataPemain5.ID[18] = 19;
-    DataPemain5.nama[18] = "Bernardo Silva";
-    DataPemain5.role[18] = role[7];
-    DataPemain5.Overall[18] = 88;
-    DataPemain5.value[18] = 91500000;
-
-    DataPemain5.ID[19] = 20;
-    DataPemain5.nama[19] = "Ederson Santana de Moraes";
-    DataPemain5.role[19] = role[0];
-    DataPemain5.Overall[19] = 88;
-    DataPemain5.value[19] = 70000000;
-
-    DataPemain5.ID[20] = 21;
-    DataPemain5.nama[20] = "Jan Oblak";
-    DataPemain5.role[20] = role[0];
-    DataPemain5.Overall[20] = 88;
-    DataPemain5.value[20] = 61000000;
-
-    DataPemain5.ID[21] = 22;
-    DataPemain5.nama[21] = "Antoine Griezmann";
-    DataPemain5.role[21] = role[14];
-    DataPemain5.Overall[21] = 88;
-    DataPemain5.value[21] = 74000000;
-
-    DataPemain5.ID[22] = 23;
-    DataPemain5.nama[22] = "Neymar da Silva Santos Júnior";
-    DataPemain5.role[22] = role[11];
-    DataPemain5.Overall[22] = 88;
-    DataPemain5.value[22] = 75500000;
-
-    DataPemain5.ID[23] = 24;
-    DataPemain5.nama[23] = "Karim Benzema";
-    DataPemain5.role[23] = role[14];
-    DataPemain5.Overall[23] = 88;
-    DataPemain5.value[23] = 39000000;
-
-    DataPemain5.ID[24] = 25;
-    DataPemain5.nama[24] = "Florian Richard Wirtz";
-    DataPemain5.role[24] = role[10];
-    DataPemain5.Overall[24] = 87;
-    DataPemain5.value[24] = 118500000;
-
-    DataPemain5.ID[25] = 26;
-    DataPemain5.nama[25] = "Philip Walter Foden";
-    DataPemain5.role[25] = role[11];
-    DataPemain5.Overall[25] = 87;
-    DataPemain5.value[25] = 109000000;
-
-    DataPemain5.ID[26] = 27;
-    DataPemain5.nama[26] = "Gregor Kobel";
-    DataPemain5.role[26] = role[0];
-    DataPemain5.Overall[26] =  87;
-    DataPemain5.value[26] = 81500000;
-
-    DataPemain5.ID[27] = 28;
-    DataPemain5.nama[27] = "Declan Rice";
-    DataPemain5.role[27] = role[6];
-    DataPemain5.Overall[27] = 87;
-    DataPemain5.value[27] = 88500000;
-
-    DataPemain5.ID[28] = 29;
-    DataPemain5.nama[28] = "Victor James Osimhen";
-    DataPemain5.role[28] = role[14];
-    DataPemain5.Overall[28] = 87;
-    DataPemain5.value[28] = 104500000;
-
-    DataPemain5.ID[29] = 30;
-    DataPemain5.nama[29] = "Gianluigi Donnarumma";
-    DataPemain5.role[29] = role[0];
-    DataPemain5.Overall[29] = 87;
-    DataPemain5.value[29] = 85500000;
-
-    DataPemain5.ID[30] = 31;
-    DataPemain5.nama[30] = "Frenkie de Jong";
-    DataPemain5.role[30] = role[7];
-    DataPemain5.Overall[30] = 87;
-    DataPemain5.value[30] = 93000000;
-
-    DataPemain5.ID[31] = 32;
-    DataPemain5.nama[31] = "Mike Peterson Maignan";
-    DataPemain5.role[31] = role[0];
-    DataPemain5.Overall[31] = 87;
-    DataPemain5.value[31] = 78000000;
-
-    DataPemain5.ID[32] = 33;
-    DataPemain5.nama[32] = "Joshua Kimmich";
-    DataPemain5.role[32] = role[6];
-    DataPemain5.Overall[32] = 87;
-    DataPemain5.value[32] = 70000000;
-
-    DataPemain5.ID[33] = 34;
-    DataPemain5.nama[33] = "Bruno Miguel Borges Fernandes";
-    DataPemain5.role[33] = role[10];
-    DataPemain5.Overall[33] = 87;
-    DataPemain5.value[33] = 80000000;
-
-    DataPemain5.ID[34] = 35;
-    DataPemain5.nama[34] = "Marcos Aoás Corrêa";
-    DataPemain5.role[34] = role[1];
-    DataPemain5.Overall[34] = 87;
-    DataPemain5.value[34] = 66500000;
-
-    DataPemain5.ID[35] = 36;
-    DataPemain5.nama[35] = "Heung Min Son";
-    DataPemain5.role[35] = role[11];
-    DataPemain5.Overall[35] = 87;
-    DataPemain5.value[35] = 77000000;
-
-    DataPemain5.ID[36] = 37;
-    DataPemain5.nama[36] = "Jamal Musiala";
-    DataPemain5.role[36] = role[10];
-    DataPemain5.Overall[36] = 86;
-    DataPemain5.value[36] = 134500000;
-
-    DataPemain5.ID[37] = 38;
-    DataPemain5.nama[37] = "Ronald Araujo";
-    DataPemain5.role[37] = role[1];
-    DataPemain5.Overall[37] = 86;
-    DataPemain5.value[37] = 93000000;
-
-    DataPemain5.ID[38] = 39;
-    DataPemain5.nama[38] = "Pedro González López";
-    DataPemain5.role[38] = role[7];
-    DataPemain5.Overall[38] = 86;
-    DataPemain5.value[38] = 105000000;
-
-    DataPemain5.ID[39] = 40;
-    DataPemain5.nama[39] = "Khvicha Kvaratskhelia";
-    DataPemain5.role[39] = role[11];
-    DataPemain5.Overall[39] = 86;
-    DataPemain5.value[39] = 109000000;
-
-    DataPemain5.ID[40] = 41;
-    DataPemain5.nama[40] = "Bukayo Saka";
-    DataPemain5.role[40] = role[11];
-    DataPemain5.Overall[40] = 86;
-    DataPemain5.value[40] = 99000000;
-
-    DataPemain5.ID[41] = 42;
-    DataPemain5.nama[41] = "Rafael da Conceição Leão";
-    DataPemain5.role[41] = role[11];
-    DataPemain5.Overall[41] = 86;
-    DataPemain5.value[41] = 93000000;
-
-    DataPemain5.ID[42] = 43;
-    DataPemain5.nama[42] = "Éder Gabriel Militão";
-    DataPemain5.role[42] = role[1];
-    DataPemain5.Overall[42] = 86;
-    DataPemain5.value[42] = 80000000;
-
-    DataPemain5.ID[43] = 44;
-    DataPemain5.nama[43] = "Masour Ousmane Dembélé";
-    DataPemain5.role[43] = role[11];
-    DataPemain5.Overall[43] = 86;
-    DataPemain5.value[43] = 74000000;
-
-    DataPemain5.ID[44] = 45;
-    DataPemain5.nama[44] = "Trent Alexander-Arnold";
-    DataPemain5.role[44] = role[2];
-    DataPemain5.Overall[44] = 86;
-    DataPemain5.value[44] = 81000000;
-
-    DataPemain5.ID[45] = 46;
-    DataPemain5.nama[45] = "Nicolò Barella";
-    DataPemain5.role[45] = role[7];
-    DataPemain5.Overall[45] = 86;
-    DataPemain5.value[45] = 79500000;
-
-    DataPemain5.ID[46] = 47;
-    DataPemain5.nama[46] = "Sergej Milinković-Savić";
-    DataPemain5.role[46] = role[7];
-    DataPemain5.Overall[46] = 86;
-    DataPemain5.value[46] = 68000000;
-
-    DataPemain5.ID[47] = 48;
-    DataPemain5.nama[47] = "Leroy Sané";
-    DataPemain5.role[47] = role[11];
-    DataPemain5.Overall[47] = 86;
-    DataPemain5.value[47] = 72500000;
-
-    DataPemain5.ID[48] = 49;
-    DataPemain5.nama[48] = "Andrew Robertson";
-    DataPemain5.role[48] = role[4];
-    DataPemain5.Overall[48] = 86;
-    DataPemain5.value[48] = 59500000;
-
-    DataPemain5.ID[49] = 50;
-    DataPemain5.nama[49] = "Paulo Dybala";
-    DataPemain5.role[49] = role[13];
-    DataPemain5.Overall[49] = 86;
-    DataPemain5.value[49] = 68000000;
-}
