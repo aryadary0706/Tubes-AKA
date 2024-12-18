@@ -2,22 +2,6 @@
 
 // Array posisi pemain
 const string role[15] = {"GK", "CB", "RB", "RWB", "LB", "LWB", "CDM", "CM", "LM", "RM", "CAM", "RW", "LW", "CF", "ST"};
-//GK 0
-//CB 1
-//RB 2
-//RWB 3
-//LB 4
-//LWB 5
-//CDM 6
-//CM 7
-//LM 8
-//RM 9
-//CAM 10
-//RW 11
-//LW 12
-//CF 13
-//ST 14
-
 
 //Reset Players
 void resetPlayers(Players &players, int N) {
@@ -42,51 +26,42 @@ bool checkOverallInput(int Overall){
 }
 
 //Cek Validitas Posisi
-bool checkPositionInput(string position){
-    bool valid_position = false;
-    for (int i = 0; i < 15; i++){
-        if (position == role[i]){
-            valid_position = true;
+bool checkPositionInput(string position) {
+    for (int i = 0; i < 15; i++) {
+        if (role[i] == position) {
+            return true;
         }
     }
-    return valid_position;
+    return false;
 }
 
+// Cari pemain berdasarkan atribut secara iteratif
+string findPlayerIterative(Players Dataplayer, string position, int Overall, int value, int N) {
+    // Validasi input
+    if (!checkOverallInput(Overall) || !checkPositionInput(position)) {
+        return "None"; // Jika input tidak valid
+    }
 
+    int price_range = (value*1.2) * 0.2; // Toleransi harga awal (10%)
+    string Nama_Pemain = "None";  // Default jika tidak ditemukan
+    bool pemain_ketemu = false;   // Status ditemukan
 
-//Cari Nama Pemain berdasarkan Atribut
-string findPlayerIterative(Players Dataplayer, string position, int Overall, int value, int N){
-    bool valid_position = checkPositionInput(position);
-    bool valid_overall = checkOverallInput(Overall);
-    string Nama_player;
-
-    if (valid_overall && valid_position) {
-        int price_range = value * 0.1;
-        bool found_player = false;
-        int i = 0;
-        while (i <= N && !(found_player)){
-            int price_range = value * 0.1;
-            if (Dataplayer.role[i] == position && Dataplayer.Overall[i] == Overall
-                && Dataplayer.value[i] >= (Dataplayer.value[i] - price_range)
-                && Dataplayer.value[i] <= (Dataplayer.value[i] + price_range)){
-                Nama_player = Dataplayer.nama[i];
-                found_player = true;
-            }else{
-                while (!(found_player)){
-                    price_range += price_range;
-                    if (Dataplayer.role[i] == position && Dataplayer.Overall[i] == Overall
-                        && Dataplayer.value[i] >= (Dataplayer.value[i] - price_range)
-                        && Dataplayer.value[i] <= (Dataplayer.value[i] + price_range)){
-                        Nama_player = Dataplayer.nama[i];
-                        found_player = true;
-                    }
-                }
+    // Loop pencarian dengan peningkatan toleransi
+    while (!pemain_ketemu && price_range <= (value*1.2)) { // Batasi toleransi hingga maksimal `value`
+        for (int i = 0; i < N; i++) {
+            if (Dataplayer.role[i] == position &&
+                Dataplayer.Overall[i] == Overall &&
+                Dataplayer.value[i] >= value - price_range &&
+                Dataplayer.value[i] <= value + price_range) {
+                Nama_Pemain = Dataplayer.nama[i];
+                pemain_ketemu = true; // Pemain ditemukan, keluar dari loop
+                break;
             }
         }
-        return Nama_player;
-    }else{
-        return "None";
+        price_range += value * 0.2; // Tingkatkan toleransi harga sebesar 10% dari nilai awal
     }
+
+    return Nama_Pemain; // Kembalikan hasil pencarian
 }
 
 
@@ -394,5 +369,3 @@ void init_players_1(Players &DataPemain5){
     DataPemain5.Overall[49] = 86;
     DataPemain5.value[49] = 68000000;
 }
-
-void init_player_2(Players &DataPemain5)
